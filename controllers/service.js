@@ -58,7 +58,7 @@ let allServices = {
         return allServices.query(_sql,[subjectID,hadmID])
     },
     getChartEvents:function ({subjectID, hadmID}){
-        let _sql = `select * from CHARTEVENTS where SUBJECT_ID=?`
+        let _sql = `select * from CHARTEVENTS inner join D_ITEMS on CHARTEVENTS.ITEM_ID = D_ITEMS.ITEMID where SUBJECT_ID=?`
         if(typeof hadmID === 'number') _sql += ' and HADM_ID=?'
         return allServices.query(_sql,[subjectID,hadmID]) 
     },
